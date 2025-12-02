@@ -178,9 +178,8 @@ def main():
                     bird.change_img(6,screen)
                     pg.display.update()
                     time.sleep(1)
-                    return
 
-        bombs = [bomb for bom in bombs if bomb is not None]        
+        bombs = [bomb for bomb in bombs if bomb is not None]        
         
         key_lst = pg.key.get_pressed() 
         bird.update(key_lst, screen)

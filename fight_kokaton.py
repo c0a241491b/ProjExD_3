@@ -180,19 +180,18 @@ def main():
                     beam_lst[c] = None
                     bird.change_img(6,screen)
                     pg.display.update()
-
         bombs = [bomb for bomb in bombs if bomb is not None]  # 爆弾のNoneを取り除く 
         beam_lst = [beam for beam in beam_lst if beam is not None]  # ビームのNoneを取り除く
 
         for d, beam in enumerate(beam_lst):  # 画面外のビーム処理
-            if beam is not None:
+            if beam is None:
                 if check_bound(beam.rct) != (True,True):
-                    beam_lst[d] = None                  
+                    beam_lst[d] = None 
 
                 
         key_lst = pg.key.get_pressed() 
         bird.update(key_lst, screen)
-        if beam is not None:
+        for beam in beam_lst:
             beam.update(screen)
         for bomb in bombs:
             bomb.update(screen)

@@ -203,7 +203,7 @@ def main():
                     bird.change_img(6,screen)
                     score.score += 1
                     pg.display.update()
-                    time.sleep(1)
+                    # time.sleep(1)
 
         bombs = [bomb for bomb in bombs if bomb is not None]        
         

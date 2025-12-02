@@ -211,23 +211,10 @@ def main():
                     bird.change_img(6,screen)
                     score.score += 1
                     pg.display.update()
-<<<<<<< HEAD
                     # time.sleep(1)
 
         bombs = [bomb for bomb in bombs if bomb is not None]        
         
-=======
-
-        bombs = [bomb for bomb in bombs if bomb is not None]  # 爆弾のNoneを取り除く 
-        beam_lst = [beam for beam in beam_lst if beam is not None]  # ビームのNoneを取り除く
-
-        for d, beam in enumerate(beam_lst):  # 画面外のビーム処理
-            if beam is not None:
-                if check_bound(beam.rct) != (True,True):
-                    beam_lst[d] = None                  
-
-                
->>>>>>> multibeam
         key_lst = pg.key.get_pressed() 
         bird.update(key_lst, screen)
         score.update(screen)

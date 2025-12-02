@@ -109,35 +109,35 @@ class Beam:  # 練習1
             screen.blit(self.img, self.rct)    
 
 
-class Bomb:
-    """
-    爆弾に関するクラス
-    """
-    def __init__(self, color: tuple[int, int, int], rad: int):
-        """
-        引数に基づき爆弾円Surfaceを生成する
-        引数1 color：爆弾円の色タプル
-        引数2 rad：爆弾円の半径
-        """
-        self.img = pg.Surface((2*rad, 2*rad))
-        pg.draw.circle(self.img, color, (rad, rad), rad)
-        self.img.set_colorkey((0, 0, 0))
-        self.rct = self.img.get_rect()
-        self.rct.center = random.randint(0, WIDTH), random.randint(0, HEIGHT)
-        self.vx, self.vy = +5, +5
+# class Bomb:
+#     """
+#     爆弾に関するクラス
+#     """
+#     def __init__(self, color: tuple[int, int, int], rad: int):
+#         """
+#         引数に基づき爆弾円Surfaceを生成する
+#         引数1 color：爆弾円の色タプル
+#         引数2 rad：爆弾円の半径
+#         """
+#         self.img = pg.Surface((2*rad, 2*rad))
+#         pg.draw.circle(self.img, color, (rad, rad), rad)
+#         self.img.set_colorkey((0, 0, 0))
+#         self.rct = self.img.get_rect()
+#         self.rct.center = random.randint(0, WIDTH), random.randint(0, HEIGHT)
+#         self.vx, self.vy = +1, +1
 
-    def update(self, screen: pg.Surface):
-        """
-        爆弾を速度ベクトルself.vx, self.vyに基づき移動させる
-        引数 screen：画面Surface
-        """
-        yoko, tate = check_bound(self.rct)
-        if not yoko:
-            self.vx *= -1
-        if not tate:
-            self.vy *= -1
-        self.rct.move_ip(self.vx, self.vy)
-        screen.blit(self.img, self.rct)
+#     def update(self, screen: pg.Surface):
+#         """
+#         爆弾を速度ベクトルself.vx, self.vyに基づき移動させる
+#         引数 screen：画面Surface
+#         """
+#         yoko, tate = check_bound(self.rct)
+#         if not yoko:
+#             self.vx *= -1
+#         if not tate:
+#             self.vy *= -1
+#         self.rct.move_ip(self.vx, self.vy)
+#         screen.blit(self.img, self.rct)
 
 
 def main():
@@ -169,6 +169,7 @@ def main():
                 pg.display.update()
                 time.sleep(1)
                 return
+            
         for b, bomb in enumerate(bombs):
             if beam is not None:
                 if beam.rct.colliderect(bomb.rct):
@@ -176,6 +177,8 @@ def main():
                     beam = None
                     bird.change_img(6,screen)
                     pg.display.update()
+                    time.sleep(1)
+                    return
 
         bombs = [bomb for bom in bombs if bomb is not None]        
         
